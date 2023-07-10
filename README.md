@@ -34,4 +34,3 @@ If you have any questions or need further assistance, you can reach us at:
 Unless otherwise noted, the code in this repository is licensed under the MIT License. See the `LICENSE` file for more details.
 ```
 
-Please adjust the content as needed to better fit your services and repository contents.
