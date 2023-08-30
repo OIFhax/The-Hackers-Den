@@ -130,6 +130,3 @@ if __name__ == "__main__":
         latest_version, existing_exceptions = get_latest_policy_version_and_exceptions(access_token)
         combined_ids = read_csv_and_extract_combined_ids("PATH_TO_YOUR_CSV_FILE")
         create_new_policy_and_add_exceptions(access_token, combined_ids, existing_exceptions)
-```
-
-Replace `YOUR_CLIENT_ID`, `YOUR_CLIENT_SECRET`, and `PATH_TO_YOUR_CSV_FILE` with appropriate values before running the script.
