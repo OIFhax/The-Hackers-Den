@@ -4,7 +4,7 @@ Welcome to The Hackers Den Public Code Repository! This repository is a collecti
 
 ## About Us
 
-The Hackers Den is a veteran-owned business located in Upstate South Carolina. We provide top-notch IT support and repair services, and we also host The Hacker’s Workshop, a maker space and workshop that serves as a hub of innovation and creativity.
+The Hackers Den is a veteran-owned makers space Upstate South Carolina. We provide a maker space and workshop that serves as a hub of innovation and creativity.
 
 ## Repository Contents
 
