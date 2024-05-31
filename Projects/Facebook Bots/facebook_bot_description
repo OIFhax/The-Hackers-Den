@@ -1,4 +1,4 @@
-
+# This script no longer works due to facebook implementing protections from automated account growth such as adding friends. 
 # Facebook Bot JS Script
 
 This repository contains a JavaScript script that automates certain actions on Facebook using the Chrome console panel. The bot was built using jQuery and setInterval, and it runs indefinitely.
