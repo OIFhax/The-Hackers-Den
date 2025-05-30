@@ -1,0 +1,127 @@
+# macOS Security Setup Script
+
+## Overview
+This PowerShell script automates the process of cloning the NIST macOS Security repository and generating CIS baseline, guidance, and compliance files for macOS security settings. It focuses specifically on the CIS Level 1 and Level 2 frameworks for the Sequoia branch of the repository.
+
+The script handles the entire workflow including dependency management, repository cloning, and security file generation, making it easy to set up and use the macOS Security tools on a Windows system.
+
+## Author
+Brent "OIFhax" Jesmer
+
+## Prerequisites
+- Windows operating system with PowerShell 5.1 or higher
+- Internet connection
+- Administrator privileges (for installing dependencies if not already present)
+- Approximately 50MB of free disk space for the repositories and generated files
+
+## Installation
+1. Download the following files to the same directory:
+   - `macos_security_setup.ps1` (Main PowerShell script)
+   - `generate_wrapper.py` (Python wrapper script)
+
+2. No additional installation steps are required as the script will automatically install any missing dependencies.
+
+## Usage
+### Basic Usage
+1. Open PowerShell as an administrator
+2. Navigate to the directory containing the script
+3. Run the script:
+   ```powershell
+   .\macos_security_setup.ps1
+   ```
+
+### What the Script Does
+When executed, the script performs the following operations:
+
+1. **Dependency Management**:
+   - Checks for and installs Git and Python 3 if not already present
+   - Installs required Python packages (PyYAML and xlwt)
+
+2. **Repository Management**:
+   - Cleans up existing repository directories to ensure a fresh start
+   - Clones the macOS Security repository (Sequoia branch) and its wiki
+   - Sets up the environment for file generation
+
+3. **Security File Generation**:
+   - Processes both CIS Level 1 and CIS Level 2 baselines
+   - Generates configuration profiles, compliance scripts, and guidance documents
+
+4. **Logging**:
+   - Creates a detailed log file (`macos_security_setup.log`) in the same directory
+   - Displays color-coded status messages in the console
+
+### Generated Files
+The script generates the following files in the `macos_security-sequoia/build` directory:
+
+#### CIS Level 1 (`build/cis_lvl1/`):
+- `cis_lvl1_compliance.sh`: Shell script to check compliance with CIS Level 1 benchmarks
+- `cis_lvl1.adoc`: AsciiDoc guidance document with detailed security information
+- `cis_lvl1.xls`: Excel spreadsheet with security settings
+- Configuration profiles in `mobileconfigs/unsigned/` directory
+- Preference files in `mobileconfigs/preferences/` directory
+
+#### CIS Level 2 (`build/cis_lvl2/`):
+- `cis_lvl2_compliance.sh`: Shell script to check compliance with CIS Level 2 benchmarks
+- `cis_lvl2.adoc`: AsciiDoc guidance document with detailed security information
+- `cis_lvl2.xls`: Excel spreadsheet with security settings
+- Configuration profiles in `mobileconfigs/unsigned/` directory
+- Preference files in `mobileconfigs/preferences/` directory
+
+## Using the Generated Files
+The generated files are designed for use on macOS systems:
+
+1. **Configuration Profiles** (`.mobileconfig` files):
+   - Can be deployed using an MDM solution or manually installed on macOS systems
+   - Apply security settings automatically when installed
+
+2. **Compliance Scripts** (`.sh` files):
+   - Run on macOS systems to check compliance with CIS benchmarks
+   - Identify security settings that need to be adjusted
+
+3. **Guidance Documents** (`.adoc` files):
+   - Provide detailed information about security settings
+   - Can be viewed with a text editor or converted to HTML/PDF using asciidoctor
+
+4. **Excel Spreadsheets** (`.xls` files):
+   - Contain security settings in a tabular format
+   - Useful for reviewing and documenting security configurations
+
+## Troubleshooting
+
+### Common Issues
+
+#### Dependency Installation Failures
+If Git or Python installation fails:
+- Ensure you have administrator privileges
+- Check your internet connection
+- Try installing the dependencies manually:
+  - Git: Download from https://git-scm.com/download/win
+  - Python 3: Download from https://www.python.org/downloads/
+
+#### Repository Cloning Failures
+If repository cloning fails:
+- Verify your internet connection
+- Check if GitHub is accessible from your network
+- Ensure Git is properly installed and in your PATH
+
+#### Asciidoctor Error
+The script may show an error related to asciidoctor not being installed. This is expected on Windows systems and does not affect the generation of the essential files. The `.adoc` files are still generated successfully and can be viewed with a text editor.
+
+#### File Generation Issues
+If file generation fails:
+- Check the log file (`macos_security_setup.log`) for detailed error messages
+- Ensure Python dependencies were installed correctly
+- Verify that the script has write permissions in the current directory
+
+### Log File
+The script creates a detailed log file (`macos_security_setup.log`) that can be helpful for troubleshooting. Review this file if you encounter any issues.
+
+## Additional Resources
+- NIST macOS Security GitHub Repository: https://github.com/usnistgov/macos_security
+- NIST macOS Security Wiki: https://github.com/usnistgov/macos_security/wiki
+- CIS Benchmarks: https://www.cisecurity.org/benchmark/apple_os
+
+## Disclaimer
+The configuration profiles generated by this script are intended for evaluation in a TEST environment. Certain configuration profiles (e.g., Smartcards), when applied, could leave a system in a state where a user can no longer login with a password. Please use caution when applying configuration settings to a system.
+
+If an MDM is already being leveraged, many of these profile settings may be available through the vendor.
