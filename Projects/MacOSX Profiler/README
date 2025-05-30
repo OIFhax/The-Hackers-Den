@@ -6,7 +6,7 @@ This PowerShell script automates the process of cloning the NIST macOS Security 
 The script handles the entire workflow including dependency management, repository cloning, and security file generation, making it easy to set up and use the macOS Security tools on a Windows system.
 
 ## Author
-Brent "OIFhax"
+OIFhax
 
 ## Prerequisites
 - Windows operating system with PowerShell 5.1 or higher
