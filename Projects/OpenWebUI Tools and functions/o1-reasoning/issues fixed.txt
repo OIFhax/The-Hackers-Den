@@ -1,0 +1,16 @@
+## The Problem
+
+The error occurred because the `pipe` method was trying to create a `User` object by unpacking the entire `__user__` dictionary, which contained a 'valves' key that isn't defined in the `User` class.
+
+## The Solution
+
+I modified the code to filter the `__user__` dictionary before creating the `User` object, ensuring only the expected parameters are passed:
+
+```python
+# Filter __user__ dictionary to only include keys expected by User class
+user_data = {k: v for k, v in __user__.items() if k in ['id', 'email', 'name', 'role']}
+self.__user__ = User(**user_data)
+```
+
+This change ensures that only the fields defined in the `User` dataclass ('id', 'email', 'name', and 'role') are passed to the constructor, preventing the "unexpected keyword argument" error.
+
